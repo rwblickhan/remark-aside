@@ -1,0 +1,23 @@
+{
+  "name": "remark-aside",
+  "version": "1.0.0",
+  "description": "A remark plugin to convert Obsidian-style callouts to HTML aside elements",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "demo": "node test.js"
+  },
+  "keywords": ["remark", "markdown", "obsidian", "callout", "aside"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "remark": "^15.0.0",
+    "remark-html": "^16.0.0",
+    "remark-rehype": "^11.0.0",
+    "rehype-stringify": "^10.0.0"
+  }
+}
