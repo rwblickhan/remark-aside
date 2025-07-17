@@ -22,7 +22,7 @@ export default function remarkAside() {
       const [, calloutType, remainingText] = calloutMatch;
 
       if (remainingText.trim()) {
-        firstText.value = remainingText.replace(/^\s*\n?/, '');
+        firstText.value = remainingText.replace(/^\s*\n?/, "");
       } else {
         firstChild.children.shift();
         if (firstChild.children.length === 0) {

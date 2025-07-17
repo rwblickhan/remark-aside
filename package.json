@@ -5,10 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --test",
-    "demo": "node test.js"
+    "test": "node --test"
   },
-  "keywords": ["remark", "markdown", "obsidian", "callout", "aside"],
+  "keywords": [
+    "remark",
+    "markdown",
+    "obsidian",
+    "callout",
+    "aside"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {

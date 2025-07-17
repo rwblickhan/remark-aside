@@ -16,7 +16,7 @@ async function processMarkdown(markdown) {
 
 test("handles empty callout", async () => {
   const markdown = `> [!note]`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(result, '<aside class="note">\n</aside>');
 });
@@ -25,7 +25,7 @@ test("handles callout with only whitespace", async () => {
   const markdown = `> [!info]
 >    
 >   `;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(result, '<aside class="info">\n</aside>');
 });
@@ -33,29 +33,29 @@ test("handles callout with only whitespace", async () => {
 test("ignores malformed callout syntax", async () => {
   const markdown = `> [!note
 > Missing closing bracket`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
-    '<blockquote>\n<p>[!note\nMissing closing bracket</p>\n</blockquote>'
+    "<blockquote>\n<p>[!note\nMissing closing bracket</p>\n</blockquote>"
   );
 });
 
 test("ignores callout without exclamation mark", async () => {
   const markdown = `> [note]
 > Should remain blockquote`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
-    '<blockquote>\n<p>[note]\nShould remain blockquote</p>\n</blockquote>'
+    "<blockquote>\n<p>[note]\nShould remain blockquote</p>\n</blockquote>"
   );
 });
 
 test("handles callout type with numbers and underscores", async () => {
   const markdown = `> [!custom_type123]
 > Custom callout`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -66,7 +66,7 @@ test("handles callout type with numbers and underscores", async () => {
 test("handles callout with special characters in content", async () => {
   const markdown = `> [!note]
 > Content with **bold**, *italic*, and \`code\``;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -78,7 +78,7 @@ test("handles nested blockquotes inside callout", async () => {
   const markdown = `> [!quote]
 > > This is a nested quote
 > > inside a callout`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -88,9 +88,9 @@ test("handles nested blockquotes inside callout", async () => {
 
 test("handles empty blockquote", async () => {
   const markdown = `>`;
-  
+
   const result = await processMarkdown(markdown);
-  assert.strictEqual(result, '<blockquote>\n</blockquote>');
+  assert.strictEqual(result, "<blockquote>\n</blockquote>");
 });
 
 test("handles callout with links and other markdown", async () => {
@@ -99,7 +99,7 @@ test("handles callout with links and other markdown", async () => {
 > 
 > - Item 1
 > - Item 2`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -108,21 +108,23 @@ test("handles callout with links and other markdown", async () => {
 });
 
 test("preserves existing data properties", async () => {
-  const processor = remark().use(() => {
-    return (tree) => {
-      tree.children.forEach(child => {
-        if (child.type === 'blockquote') {
-          child.data = { existingProp: 'value' };
-        }
-      });
-    };
-  }).use(remarkAside);
-  
+  const processor = remark()
+    .use(() => {
+      return (tree) => {
+        tree.children.forEach((child) => {
+          if (child.type === "blockquote") {
+            child.data = { existingProp: "value" };
+          }
+        });
+      };
+    })
+    .use(remarkAside);
+
   const tree = processor.parse(`> [!note]
 > Test`);
   processor.runSync(tree);
-  
+
   const blockquote = tree.children[0];
-  assert.strictEqual(blockquote.data.hName, 'aside');
-  assert.strictEqual(blockquote.data.existingProp, 'value');
+  assert.strictEqual(blockquote.data.hName, "aside");
+  assert.strictEqual(blockquote.data.existingProp, "value");
 });

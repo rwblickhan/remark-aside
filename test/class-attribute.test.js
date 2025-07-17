@@ -17,7 +17,7 @@ async function processMarkdown(markdown) {
 test("adds class attribute matching callout type", async () => {
   const markdown = `> [!note]
 > This is a note`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -27,11 +27,11 @@ test("adds class attribute matching callout type", async () => {
 
 test("adds class attribute for different callout types", async () => {
   const types = ["warning", "tip", "info", "danger", "success"];
-  
+
   for (const type of types) {
     const markdown = `> [!${type}]
 > Test content`;
-    
+
     const result = await processMarkdown(markdown);
     assert.strictEqual(
       result,
@@ -43,7 +43,7 @@ test("adds class attribute for different callout types", async () => {
 test("converts class to lowercase for uppercase callout types", async () => {
   const markdown = `> [!WARNING]
 > This should have lowercase class`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -54,7 +54,7 @@ test("converts class to lowercase for uppercase callout types", async () => {
 test("handles mixed case callout types", async () => {
   const markdown = `> [!Important]
 > Mixed case test`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -65,7 +65,7 @@ test("handles mixed case callout types", async () => {
 test("handles custom callout types with underscores and numbers", async () => {
   const markdown = `> [!custom_type123]
 > Custom callout with underscores and numbers`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -76,7 +76,7 @@ test("handles custom callout types with underscores and numbers", async () => {
 test("class attribute uses lowercase", async () => {
   const markdown = `> [!MyCustomType]
 > Testing consistency`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -93,7 +93,7 @@ test("multiple callouts have correct individual classes", async () => {
 
 > [!tip]
 > Third callout`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -104,7 +104,7 @@ test("multiple callouts have correct individual classes", async () => {
 test("class works with callout text on same line", async () => {
   const markdown = `> [!info] Important information
 > Additional details`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,

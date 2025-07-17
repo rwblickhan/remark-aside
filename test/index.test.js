@@ -17,7 +17,7 @@ async function processMarkdown(markdown) {
 test("converts basic callout to aside element", async () => {
   const markdown = `> [!note]
 > This is a note`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -28,7 +28,7 @@ test("converts basic callout to aside element", async () => {
 test("converts callout with text on same line", async () => {
   const markdown = `> [!warning] Be careful
 > This is dangerous`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -42,7 +42,7 @@ test("handles multiple callouts", async () => {
 
 > [!tip]
 > A helpful tip`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -53,11 +53,11 @@ test("handles multiple callouts", async () => {
 test("preserves regular blockquotes", async () => {
   const markdown = `> This is a regular blockquote
 > without callout syntax`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
-    '<blockquote>\n<p>This is a regular blockquote\nwithout callout syntax</p>\n</blockquote>'
+    "<blockquote>\n<p>This is a regular blockquote\nwithout callout syntax</p>\n</blockquote>"
   );
 });
 
@@ -69,7 +69,7 @@ test("handles mixed content", async () => {
 
 > [!warning]
 > Warning message`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -79,11 +79,11 @@ test("handles mixed content", async () => {
 
 test("handles different callout types", async () => {
   const types = ["note", "tip", "info", "warning", "danger", "success"];
-  
+
   for (const type of types) {
     const markdown = `> [!${type}]
 > Test content`;
-    
+
     const result = await processMarkdown(markdown);
     assert.strictEqual(
       result,
@@ -98,7 +98,7 @@ test("handles multiline callout content", async () => {
 > Line two
 > 
 > Line four after blank line`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
@@ -109,7 +109,7 @@ test("handles multiline callout content", async () => {
 test("case sensitivity - converts callout type to lowercase", async () => {
   const markdown = `> [!WARNING]
 > This should work`;
-  
+
   const result = await processMarkdown(markdown);
   assert.strictEqual(
     result,
