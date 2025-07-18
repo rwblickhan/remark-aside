@@ -1,6 +1,6 @@
 {
   "name": "remark-aside",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A remark plugin to convert Obsidian-style callouts to HTML aside elements",
   "main": "index.js",
   "type": "module",
