@@ -7,6 +7,9 @@
   "scripts": {
     "test": "node --test"
   },
+  "files": [
+    "index.js"
+  ],
   "keywords": [
     "remark",
     "markdown",
@@ -17,11 +20,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "remark-gfm": "^4.0.1",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "rehype-stringify": "^10.0.0",
+    "remark-gfm": "^4.0.1",
     "remark": "^15.0.0",
     "remark-html": "^16.0.0",
     "remark-rehype": "^11.0.0"
